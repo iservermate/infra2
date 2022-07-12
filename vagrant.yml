@@ -1,0 +1,7 @@
+---
+  - name: "Create Vagrantfile"
+    hosts: local
+    #become: true
+    gather_facts: on
+    roles:
+      - vagrant

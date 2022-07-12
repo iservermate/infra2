@@ -1,0 +1,29 @@
+---
+  - name: Install and configure Roundcube
+    hosts: webserver
+    become: true
+    gather_facts: on
+    tasks:
+      - name: Downalod and extract roundcube on Webserver
+        unarchive:
+          src: "{{ Rcubefile }}"
+          dest: /var/www/{{ VhostName }}/
+          remote_src: yes
+          extra_opts: [--strip-components=1]
+          owner: apache
+          group: apache
+          mode: 0755
+  
+      - name: Changing directory permissions
+        ansible.builtin.file: 
+          path: /var/www/{{ VhostName }}
+          state: directory
+          recurse: yes
+          owner: apache
+          group: apache
+          mode: 0755
+      
+      - name: Reload httpd service
+        service:
+          name: httpd
+          state: reloaded

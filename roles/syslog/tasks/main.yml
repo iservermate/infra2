@@ -1,0 +1,13 @@
+---
+# tasks file for roles/syslog
+  - import_tasks: syslog.yml
+    tags:
+      - syslogInstall
+  
+  - import_tasks: configureserver.yml
+    tags:
+      - syslogConfigure
+  
+  - import_tasks: firewall.yml
+    tags:
+      - SyslogFirewallUpdate

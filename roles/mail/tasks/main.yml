@@ -1,0 +1,17 @@
+---
+# tasks file for roles/mail
+  - import_tasks: packages.yml
+    tags:
+      - postfixpackages
+  
+  - import_tasks: postfix.yml
+    tags:
+      - postfixconfigs
+
+  - import_tasks: dovecot.yml
+    tags:
+      - dovcotconfigs
+
+  - import_tasks: firewall.yml
+    tags:
+      - firewallruless

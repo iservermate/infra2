@@ -1,0 +1,7 @@
+---
+  - import_playbook: web.yml
+  - import_playbook: vhost.yml
+  - import_playbook: database.yml
+  - import_playbook: rsyslog.yml
+  - import_playbook: ntp.yml
+  - import_playbook: postfix.yml

@@ -1,0 +1,35 @@
+#################################
+#ADD VARIABLES TO HOST_VARS FILES
+#################################
+> Update variable files:
+    : web | db
+ansible-playbook -i inventory/dev/hosts vagrant.yml
+vagrant up
+ansible-playbook -i inventory/dev/hosts iServermate.yml
+
+### WORDPRESS ### 
+> Update variable files:
+    : web | db
+ansible-playbook -i inventory/dev/hosts InstallWordpress.yml
+
+### OSTICKET ### 
+> Update variable files:
+    : web | db
+ansible-playbook -i inventory/dev/hosts InstallOsticket.yml
+
+### MAIL ### 
+>>> IMPORT: SET 'RemoteServer' variable TO RemoteServer:mail.iservermate.loca
+Note: Updaete db | web | servers variables based on your VHOST.
+ansible-playbook -i inventory/dev/hosts InstallMail.yml
+Access: https://roundcube.iservermate.local/installer/
+
+At very end: ansible-playbook -i inventory/dev/hosts roundcube-post-tasks.yml
+
+### NAGIOS ### 
+ansible-playbook -i inventory/dev/hosts nagios.yml
+
+
+
+###############~
+#ansible-playbook -i inventory/dev/hosts vhost.yml #Create new Vhost
+ansible-playbook -i inventory/dev/hosts database.yml --tags mariadbNewDb #Create new DB

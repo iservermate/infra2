@@ -1,0 +1,14 @@
+---
+  - name: "Create Vagrantfile"
+    template:
+      src: Vagrantfile.j2
+      dest: "{{ GitClonePath }}/Vagrantfile"
+      mode: '0755'
+
+  - name: Install Required pip modules
+    pip:
+      name:
+        - PyOpenSSL
+        - cryptography
+      state: present
+      executable: pip3

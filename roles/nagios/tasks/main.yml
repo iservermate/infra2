@@ -1,0 +1,9 @@
+---
+# tasks file for roles/nagios
+  - import_tasks: Prerequisites.yml
+    tags:
+      - NagiosPrerequisites
+
+  - import_tasks: NagiosContainer.yml
+    tags:
+      - NagiosPrerequisites

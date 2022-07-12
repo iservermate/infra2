@@ -1,0 +1,28 @@
+---
+  - name: "Install Chrony"
+    yum:
+      name: chrony
+      state: latest
+
+  - name: "Start chronyd service"
+    ansible.builtin.service:
+      name: chronyd
+      state: started
+      enabled: yes
+    tags: ChronyRestart
+
+  - name: "Updating firewall rules for rsyslog"
+    ansible.posix.firewalld:
+      service: ntp
+      permanent: yes
+      state: enabled
+    notify: "firewall reload"
+  
+  - name: "Configure servers to update its on time forn NTP SERVER"
+    shell: |
+      timedatectl set-ntp true
+
+  - name: Set timezone to America/Toronto
+    community.general.timezone:
+      name: America/Toronto
+    notify: "chronyd reload"

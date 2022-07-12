@@ -1,0 +1,7 @@
+---
+  - name: "Configure Rsyslog server"
+    hosts: webserver,dbserver,syslogserver,ntpserver
+    become: true
+    gather_facts: on
+    roles:
+      - syslog

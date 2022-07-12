@@ -1,0 +1,7 @@
+---
+  - name: "Configure WEB server with httpd and https"
+    hosts: webserver
+    become: true
+    gather_facts: on
+    roles:
+      - web

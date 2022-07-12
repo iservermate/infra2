@@ -1,0 +1,10 @@
+---
+#    when: inventory_hostname in groups['ntpserver']
+  - name: "Add NTP server info on client servers"
+    ansible.builtin.lineinfile:
+      path: /etc/chrony.conf
+      regexp: '^pool 2.centos.pool.ntp.org iburst'
+      line: server ntp.iservermate.local iburst
+      backup: yes
+    when: inventory_hostname not in groups['ntpserver']
+    notify: "chronyd reload"

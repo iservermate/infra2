@@ -1,0 +1,7 @@
+---
+  - name: "Install and configure Nagios server"
+    hosts: nagiosserver
+    become: true
+    gather_facts: on
+    roles:
+      - nagios

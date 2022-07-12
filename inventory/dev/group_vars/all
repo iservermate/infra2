@@ -1,0 +1,192 @@
+#PYTHON
+ansible_python_interpreter: /usr/bin/python3
+
+#GIT INFO
+GitClonePath: ~/Documents/infra
+
+#VAGRANT
+VagrantWifiInterface: "en0: Wi-Fi" #Disable below line and Enable this if using Lan interface
+#VagrantLanInterface: "eno1"  #Disable above line and Enable this if using Lan interface
+
+#COMPNAY
+Company: iServermate
+Domain: iservermate.local
+
+#NETWORK
+Mynetworks: 192.168.0.0/24
+
+########################################
+####### Servers Info (Variables) #######
+########################################
+# REPO SERVER INFO
+RepoVmName: repo
+RepoFqdn: repo.iservermate.local
+RepoServerIP: 192.168.0.91
+
+#NTP SERVER INFO
+NtpVmName: ntp
+NtpFqdn: ntp.iservermate.local
+NtpServerIP: 192.168.0.92
+
+#WEB SERVER INFO
+WebVmName: web
+WebFqdn: web.iservermate.local
+WebServerIP: 192.168.0.93
+
+#DB SERVER INFO
+DbVmName: db
+DbFqdn: db.iservermate.local
+DbServerIP: 192.168.0.94
+
+#Mail SERVER INFO
+MailPackages:
+  - dovecot                                        
+  - gcc
+  - libffi-devel
+  - mailx
+  - mod_ssl
+  - mysql
+  - openssl
+  - openssl-devel
+  - php
+  - php-cli
+  - php-common
+  - php-curl
+  - php-gd
+  - php-intl
+  - php-json
+  - php-ldap
+  - php-mbstring
+  - php-mysqlnd
+  - php-opcache
+  - php-pdo
+  - php-pecl-apcu
+  - php-pecl-zip
+  - php-pear-Net-Socket
+  - php-xml
+  - postfix
+  - python3-devel
+  - redhat-rpm-config
+
+MailVmName: mail
+MailFqdn: mail.iservermate.local
+MailServerIP: 192.168.0.95
+
+#Syslog SERVER INFO
+SyslogVmName: syslog
+SyslogFqdn: syslog.iservermate.local
+SyslogServerIP: 192.168.0.96
+
+#DNS SERVER INFO
+DnsVmName: dns
+DnsFqdn: dns.iservermate.local
+DnsServerIP: 192.168.0.97
+
+#NAGIOS SERVER INFO
+NagiosVmName: nagios
+NagiosFqdn: nagios.iservermate.local
+NagiosServerIP: 192.168.0.98
+
+
+#####################
+#WEB SERVER VARIABLES
+#####################
+WebPackages:
+  - bzip2																				
+  - cargo                                         
+  - gcc                                           
+  - httpd                                         
+  - libffi-devel                                  
+  - mailx                                         
+  - mod_ssl                                       
+  - mysql                                         
+  - openssl                                       
+  - openssl-devel                                 
+  - php                                           
+  - php-cli                                       
+  - php-common                                    
+  - php-curl                                      
+  - php-gd                                        
+  - php-intl                                      
+  - php-json                                      
+  - php-ldap                                      
+  - php-mbstring                                  
+  - php-mysqlnd                                   
+  - php-opcache                                   
+  - php-pdo                                       
+  - php-pecl-apcu                                 
+  - php-pecl-zip
+  - php-pear-Net-Socket                                  
+  - php-xml                                       
+  - python3-devel                                 
+  - redhat-rpm-config
+
+#SSL certificate info for web server
+key_size: 4096
+key_type: DSA
+ProvinceName: Mississauga
+country_name: CA
+organization_name: iServermate
+email_address: admin@iservermate.local
+
+#VIRTUALHOST (Info on Webserver)
+VhostName: roundcube      #Change this variablel everytime you want to create new VIRTUALHOST
+VhostDomainName: iservermate.local
+
+#SSL certificate info for Virtualhosts on web server
+VhostProvinceName: Mississauga
+Vhostcountry_name: CA
+Vhostorganization_name: iServermate
+Vhostemail_address: admin@iservermate.local
+
+###################
+#DB SERVER VARAIBLE
+###################
+DbPackages:
+  - gcc
+  - libffi-devel
+  - mailx
+  - mariadb-server
+  - mod_ssl
+  - openssl
+  - openssl-devel
+  - php
+  - php-cli
+  - php-common
+  - php-curl
+  - php-gd
+  - php-intl
+  - php-json
+  - php-ldap
+  - php-mbstring
+  - php-mysqlnd
+  - php-opcache
+  - php-pdo
+  - php-pecl-apcu
+  - php-pecl-zip
+  - php-pear-Net-Socket
+  - php-xml
+  - python3-devel
+  - redhat-rpm-config
+
+#DB vars
+mysql_root_password: password
+db_name: roundcube
+db_user: roundcube
+db_pass: password
+RemoteServer: mail.iservermate.local #Server name, you will access this db from.
+#Above line will be 'mail.iservermate.local' in case if you installing roundcube
+
+######################
+#MAIL SERVER VARIABLES
+######################
+Rcubefile: https://github.com/roundcube/roundcubemail/releases/download/1.4.13/roundcubemail-1.4.13-complete.tar.gz
+
+########################
+#NAGIOS SERVER VARIABLES
+########################
+NagiosImage: docker.io/iservermate/nagios
+ContainerHostname: monitoring.iservermate.local
+ContainerName: nagios
+NagVolumeName: NagVol1
+NagContainerDir: /usr/local/nagios

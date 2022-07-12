@@ -1,0 +1,53 @@
+---
+  - name: Install and configure Roundcube
+    hosts: webserver,dbserver,syslogserver,ntpserver,mailserver
+    become: true
+    gather_facts: on
+    tasks:
+      - name: Install packages on all servers
+        yum:
+          name: postfix
+          state: latest
+        when: inventory_hostname not in groups['mailserver']
+
+      - name: "Update inet_protocols"
+        ansible.builtin.lineinfile:
+          path: /etc/postfix/main.cf
+          regexp: '^inet_protocols = all'
+          line: 'inet_protocols = ipv4'
+        when: inventory_hostname not in groups['mailserver']
+        notify: "firewall restart"
+
+      - name: "Update inet_interfaces"
+        ansible.builtin.lineinfile:
+          path: /etc/postfix/main.cf
+          regexp: '^inet_interfaces = localhost'
+          line: 'inet_interfaces = all'
+        when: inventory_hostname not in groups['mailserver']
+        notify: "firewall restart"
+
+      - name: Add postfix service to firewall
+        ansible.posix.firewalld:
+          service: "{{ item }}"
+          permanent: yes
+          state: enabled
+        loop:
+          - smtp
+        when: inventory_hostname not in groups['mailserver']
+        ignore_errors: yes
+        notify: "postfix restart"
+
+    handlers:    
+      - name: Reload firewalld
+        ansible.builtin.service:
+          name: firewalld
+          state: reloaded
+          enabled: yes
+        listen: "firewall restart"
+      
+      - name: Reload Postfix
+        ansible.builtin.service:
+          name: postfix
+          state: reloaded
+          enabled: yes
+        listen: "postfix restart"

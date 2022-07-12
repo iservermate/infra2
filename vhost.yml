@@ -1,0 +1,7 @@
+---
+  - name: "Create Virtualhost and set SSL configuration"
+    hosts: webserver
+    become: true
+    gather_facts: on
+    roles:
+      - vhost

@@ -1,0 +1,37 @@
+  - name: "Configure WEB server for OSticket portal"
+    hosts: webserver
+    become: true
+    gather_facts: on
+    vars:
+      EticketLink: https://s3.amazonaws.com/downloads.osticket.com/core/osTicket-v1.15.8.zip
+    tasks:
+      - name: Create virtualhost on webserver
+        include_role:
+          name: vhost
+
+      - name: Download and Extract osticket
+        unarchive:
+          src: "{{ EticketLink }}"
+          dest: /var/www/{{ VhostName }}
+          remote_src: yes
+          # extra_opts: [--strip-components=1]
+          owner: apache
+          group: apache
+          mode: 0755
+
+      - name: Create ost-config.php file
+        shell: |
+          cp /var/www/osticket/upload/include/ost-sampleconfig.php /var/www/osticket/upload/include/ost-config.php
+
+      - name: Chage OSTicket directory owndership
+        command: chown -R apache.apache /var/www/osticket
+        
+  - name: "Configure DB server for OSticket portal"
+    hosts: dbserver
+    become: true
+    gather_facts: on
+    tasks:
+      - name: Create database
+        include_role:
+          name: database
+          tasks_from: newdatabase

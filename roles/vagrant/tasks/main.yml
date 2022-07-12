@@ -1,0 +1,6 @@
+---
+# tasks file for roles/vagrant
+  - import_tasks: vagrant.yml
+    tags:
+      #- never
+      - VagrantFileGenerate

@@ -1,0 +1,7 @@
+---
+  - name: "Install and configure Mail server"
+    hosts: mailserver
+    become: true
+    gather_facts: on
+    roles:
+      - mail

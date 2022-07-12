@@ -1,0 +1,19 @@
+---
+  - name: "Updating firewall for Rsyslog tcp port"
+    ansible.posix.firewalld:
+      port: 514/tcp
+      permanent: yes
+      state: enabled
+    when: inventory_hostname in groups['syslogserver']
+
+  - name: "Updating firewall for Rsyslog udp port"
+    ansible.posix.firewalld:
+      port: 514/udp
+      permanent: yes
+      state: enabled
+    notify: "firewall reload"
+    when: inventory_hostname in groups['syslogserver']
+
+  - name: Disable selinux
+    ansible.posix.selinux:
+      state: disabled

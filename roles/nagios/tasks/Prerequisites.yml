@@ -1,0 +1,12 @@
+- name: Install docker
+  yum:
+    name: 
+      - docker
+      - python3-docker.noarch
+    state: latest
+
+- name: start docker service
+  service:
+    name: podman
+    state: started
+    enabled: yes 

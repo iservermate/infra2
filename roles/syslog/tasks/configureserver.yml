@@ -1,0 +1,51 @@
+---
+  - name: "Update rsyslog.conf for tcp & udp ports"
+    ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      regexp: '#module\(load="imudp"\)'
+      line: 'module(load="imudp")'
+      state: present
+      backup: yes
+    when: inventory_hostname in groups['syslogserver']
+
+  - ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      regexp: '#input\(type="imudp" port="514"\)'
+      line: 'input(type="imudp" port="514")'
+      state: present
+    when: inventory_hostname in groups['syslogserver']
+
+  - ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      regexp: '#module\(load="imtcp"\) # needs to be done just once'
+      line: 'module(load="imtcp")'
+      state: present
+    when: inventory_hostname in groups['syslogserver']
+
+  - ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      regexp: '#input\(type="imtcp" port="514"\)'
+      line: 'input(type="imtcp" port="514")'
+      state: present
+    when: inventory_hostname in groups['syslogserver']
+
+  - name: "Add template in rsyslog.conf"
+    ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      insertbefore: '### GLOBAL DIRECTIVES ####'
+      line: '$template PerHostLog,"/var/log/RemoteLogs/%HOSTNAME%/%PROGRAMNAME%.log"'
+    when: inventory_hostname in groups['syslogserver']
+
+  - ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      insertbefore: '### GLOBAL DIRECTIVES ####'
+      line: '*.* ?PerHostLog'
+    when: inventory_hostname in groups['syslogserver']
+    notify: "rsyslog reload"
+
+  - name: "Start rsyslog service on clients"
+    ansible.builtin.service:
+      name: rsyslog
+      state: restarted
+      enabled: yes
+    when: inventory_hostname not in groups['syslogserver']

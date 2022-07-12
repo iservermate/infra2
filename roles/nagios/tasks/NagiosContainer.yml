@@ -1,0 +1,33 @@
+- name: Pull iServermate nagios image
+  shell: docker pull "{{ NagiosImage }}"
+
+- name: Create a volume
+  docker_volume:
+    name: "{{ NagVolumeName }}"
+
+# - name: Create nagios container
+#   docker_container:
+#     name: nagios
+#     hostname: "{{ ContainerHostname }}"
+#     image: "{{ NagiosImage }}"
+#     ports: 
+#       - 80:80
+#     volumes:
+#      - "{{ NagSrcVol }}:{{ NagDestVol }}:rw"
+#     #command: /bin/sh
+#     #detach: True
+
+- name: Create and start nagios contianer
+  shell: docker  run --hostname {{ ContainerHostname }} --name {{ ContainerName }} -v {{ NagVolumeName }}:{{ NagContainerDir }} -p 80:80 -itd {{ NagiosImage }} /bin/bash
+  ignore_errors: yes
+
+- name: Add port to firewall
+  ansible.posix.firewalld:
+    port: 9090/tcp
+    permanent: yes
+    state: enabled
+  notify: "firewall reload"
+
+- name: Disable selinux
+  ansible.posix.selinux:
+    state: disabled

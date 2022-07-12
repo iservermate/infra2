@@ -1,0 +1,8 @@
+---
+# handlers file for roles/nagios
+  - name: Reload firewalld
+    ansible.builtin.service:
+      name: firewalld
+      state: reloaded
+      enabled: yes
+    listen: "firewall reload"

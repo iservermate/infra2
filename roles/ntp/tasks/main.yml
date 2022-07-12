@@ -1,0 +1,13 @@
+---
+# tasks file for roles/ntp
+  - import_tasks: ntp.yml
+    tags:
+      - NtpInstall
+
+  - import_tasks: server.yml
+    tags:
+      - NtpConfigureServer
+
+  - import_tasks: client.yml
+    tags:
+      - NtpConfigureClient

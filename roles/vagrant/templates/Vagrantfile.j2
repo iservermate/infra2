@@ -1,0 +1,93 @@
+#WEB        SERVER
+#NTP        SERVER 
+#DB         SERVER
+#SYSLOG     ESRVER
+#DNS        SERVER
+#MAIL       SERVER
+#Repo        SERVER
+
+#NAGIOS     CONTIANER
+#JENKINS    CONTIANER
+#LOGSTASH   CONTIANER/SERVER
+#AWX        CONTAINER
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "generic/centos8"
+
+    #Repo SERVER
+    # config.vm.define "{{ RepoVmName }}" do |{{ RepoVmName }}|
+      # {{ RepoVmName }}.vm.hostname = "{{ RepoFqdn }}"
+      # {{ RepoVmName }}.vm.box_check_update = false
+      # {{ RepoVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ RepoServerIP }}"
+      # {{ RepoVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ RepoVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    # end
+
+    #NTP SERVER
+    config.vm.define "{{ NtpVmName }}" do |{{ NtpVmName }}|
+      {{ NtpVmName }}.vm.hostname = "{{ NtpFqdn }}"
+      {{ NtpVmName }}.vm.box_check_update = false
+      {{ NtpVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ NtpServerIP }}"
+      {{ NtpVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ NtpVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    end
+
+    #WEB SERVER
+    config.vm.define "{{ WebVmName }}" do |{{ WebVmName }}|
+      {{ WebVmName }}.vm.hostname = "{{ WebFqdn }}"
+      {{ WebVmName }}.vm.box_check_update = false
+      {{ WebVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ WebServerIP }}"
+      {{ WebVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ WebVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    end
+
+    #DB SERVER
+    config.vm.define "{{ DbVmName }}" do |{{ DbVmName }}|
+      {{ DbVmName }}.vm.hostname = "{{ DbFqdn }}"
+      {{ DbVmName }}.vm.box_check_update = false
+      {{ DbVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ DbServerIP }}"
+      {{ DbVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ DbVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    end
+ 
+    #MAIL SERVER
+    config.vm.define "{{ MailVmName }}" do |{{ MailVmName }}|
+      {{ MailVmName }}.vm.hostname = "{{ MailFqdn }}"
+      {{ MailVmName }}.vm.box_check_update = false
+      {{ MailVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ MailServerIP }}"
+      {{ MailVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ DnsVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    end
+ 
+    #SYSLOG SERVER
+    config.vm.define "{{ SyslogVmName }}" do |{{ SyslogVmName }}|
+      {{ SyslogVmName }}.vm.hostname = "{{ SyslogFqdn }}"
+      {{ SyslogVmName }}.vm.box_check_update = false
+      {{ SyslogVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ SyslogServerIP }}"
+      {{ SyslogVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ SyslogVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    end
+ 
+    #DNS SERVER
+    # config.vm.define "{{ DnsVmName }}" do |{{ DnsVmName }}|
+      # {{ DnsVmName }}.vm.hostname = "{{ DnsFqdn }}"
+      # {{ DnsVmName }}.vm.box_check_update = false
+      # {{ DnsVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ DnsServerIP }}"
+      # {{ DnsVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ DnsVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    # end
+
+    #NAGIOS SERVER
+    config.vm.define "{{ NagiosVmName }}" do |{{ NagiosVmName }}|
+      {{ NagiosVmName }}.vm.hostname = "{{ NagiosFqdn }}"
+      {{ NagiosVmName }}.vm.box_check_update = false
+      {{ NagiosVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ NagiosServerIP }}"
+      {{ NagiosVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      #{{ NagiosVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
+    end
+ 
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "512"
+    vb.cpus = "1"
+  end
+end

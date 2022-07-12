@@ -1,0 +1,28 @@
+---
+  - name: "Install rsyslog package"
+    yum:
+      name: rsyslog
+      state: latest
+
+  - ansible.builtin.lineinfile:
+      path: /etc/rsyslog.conf
+      line: '*.* @@syslog.iservermate.local:514'
+    when: inventory_hostname not in groups['syslogserver']
+    notify: "rsyslog reload"
+
+  - name: "Updating firewall rules for rsyslog"
+    ansible.posix.firewalld:
+      service: syslog
+      permanent: yes
+      state: enabled
+    notify: "firewall reload"
+
+  - name: "Start rsyslog service"
+    ansible.builtin.service:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    loop:
+      - rsyslog
+    tags: rsyslogRestart
+  

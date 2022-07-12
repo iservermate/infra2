@@ -1,0 +1,21 @@
+---
+  - name: Install and configure Roundcube
+    hosts: webserver
+    become: true
+    gather_facts: on
+    tasks:
+      - name: Rename installer directory
+        command: mv /var/www/{{ VhostName }}/installer /var/www/{{ VhostName }}/installer-bak
+        ignore_errors: yes
+
+      - name: Add smtp server info
+        blockinfile:
+          path: /var/www/{{ VhostName }}/config/config.inc.php
+          block: |
+            $config['smtp_server'] = 'mail.iservermate.local';
+            $config['smtp_port'] = 25;
+            $config['smtp_auth_type'] = '';
+            $config['smtp_user'] = '';
+            $config['smtp_pass'] = '';
+          backup: true
+            

@@ -1,0 +1,18 @@
+---
+  - name: "Install required packages"
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop: "{{ MailPackages }}"
+    tags: postfixpackages
+
+  - name: "Start servcies"
+    ansible.builtin.service:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    loop:
+      - postfix
+      - dovecot
+    ignore_errors: true  
+    tags: postfixservices

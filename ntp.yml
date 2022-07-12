@@ -1,0 +1,7 @@
+---
+  - name: "Install and configure NTP"
+    hosts: webserver,dbserver,syslogserver,ntpserver
+    become: true
+    gather_facts: on
+    roles:
+      - ntp
