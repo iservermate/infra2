@@ -130,7 +130,7 @@ organization_name: iServermate
 email_address: admin@iservermate.local
 
 #VIRTUALHOST (Info on Webserver)
-VhostName: roundcube      #Change this variablel everytime you want to create new VIRTUALHOST
+VhostName: nagios      #Change this variablel everytime you want to create new VIRTUALHOST
 VhostDomainName: iservermate.local
 
 #SSL certificate info for Virtualhosts on web server
