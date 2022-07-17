@@ -15,6 +15,6 @@
       target: /tmp/rcubeschema.sql
     tags:
       - initializedb
-    #notify: "mariadb restart"
+    notify: "mariadb restart"
     ignore_errors: true
     run_once: true

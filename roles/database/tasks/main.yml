@@ -16,3 +16,7 @@
   - import_tasks: rcubeschema.yml
     tags:
       - mariadbRcubeShema
+  
+  - import_tasks: createuser.yml
+    tags:
+      - mariadbUser

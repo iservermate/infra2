@@ -1,6 +1,6 @@
 ---
-  - name: Install and configure Roundcube
-    hosts: webserver,dbserver,syslogserver,ntpserver,mailserver
+  - name: Install and configure Postfix
+    hosts: webserver,dbserver,syslogserver,ntpserver,mailserver,nagiosserver
     become: true
     gather_facts: on
     tasks:
@@ -27,7 +27,7 @@
         notify: "firewall restart"
 
       - name: Add postfix service to firewall
-        ansible.posix.firewalld:
+        firewalld:
           service: "{{ item }}"
           permanent: yes
           state: enabled

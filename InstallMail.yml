@@ -1,5 +1,14 @@
 ---
   - import_playbook: vhost.yml
   - import_playbook: database.yml
-  - import_playbook: mail.yml
   - import_playbook: roundcube.yml
+  - import_playbook: mail.yml
+  - import_playbook: postfix.yml
+
+#  - name: Adding Db user
+#    hosts: dbserver
+#    become: true
+#    gather_facts: on
+#    tasks:
+#      - name: Run command on Database
+#        shell: mysql -e "grant all privileges on {{ db_name }}.* to {{ db_user }}@{{ RemoteServer }} identified by '{{ db_pass }}';"

@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     # config.vm.define "{{ RepoVmName }}" do |{{ RepoVmName }}|
       # {{ RepoVmName }}.vm.hostname = "{{ RepoFqdn }}"
       # {{ RepoVmName }}.vm.box_check_update = false
-      # {{ RepoVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ RepoServerIP }}"
+      # {{ RepoVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ RepoServerIP }}"
       # {{ RepoVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ RepoVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     # end
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "{{ NtpVmName }}" do |{{ NtpVmName }}|
       {{ NtpVmName }}.vm.hostname = "{{ NtpFqdn }}"
       {{ NtpVmName }}.vm.box_check_update = false
-      {{ NtpVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ NtpServerIP }}"
+      {{ NtpVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ NtpServerIP }}"
       {{ NtpVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ NtpVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     end
@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "{{ WebVmName }}" do |{{ WebVmName }}|
       {{ WebVmName }}.vm.hostname = "{{ WebFqdn }}"
       {{ WebVmName }}.vm.box_check_update = false
-      {{ WebVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ WebServerIP }}"
+      {{ WebVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ WebServerIP }}"
       {{ WebVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ WebVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     end
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "{{ DbVmName }}" do |{{ DbVmName }}|
       {{ DbVmName }}.vm.hostname = "{{ DbFqdn }}"
       {{ DbVmName }}.vm.box_check_update = false
-      {{ DbVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ DbServerIP }}"
+      {{ DbVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ DbServerIP }}"
       {{ DbVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ DbVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     end
@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "{{ MailVmName }}" do |{{ MailVmName }}|
       {{ MailVmName }}.vm.hostname = "{{ MailFqdn }}"
       {{ MailVmName }}.vm.box_check_update = false
-      {{ MailVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ MailServerIP }}"
+      {{ MailVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ MailServerIP }}"
       {{ MailVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ DnsVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     end
@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "{{ SyslogVmName }}" do |{{ SyslogVmName }}|
       {{ SyslogVmName }}.vm.hostname = "{{ SyslogFqdn }}"
       {{ SyslogVmName }}.vm.box_check_update = false
-      {{ SyslogVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ SyslogServerIP }}"
+      {{ SyslogVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ SyslogServerIP }}"
       {{ SyslogVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ SyslogVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     end
@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
     # config.vm.define "{{ DnsVmName }}" do |{{ DnsVmName }}|
       # {{ DnsVmName }}.vm.hostname = "{{ DnsFqdn }}"
       # {{ DnsVmName }}.vm.box_check_update = false
-      # {{ DnsVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ DnsServerIP }}"
+      # {{ DnsVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ DnsServerIP }}"
       # {{ DnsVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ DnsVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     # end
@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "{{ NagiosVmName }}" do |{{ NagiosVmName }}|
       {{ NagiosVmName }}.vm.hostname = "{{ NagiosFqdn }}"
       {{ NagiosVmName }}.vm.box_check_update = false
-      {{ NagiosVmName }}.vm.network "public_network", bridge: "{{ VagrantWifiInterface }}", ip:"{{ NagiosServerIP }}"
+      {{ NagiosVmName }}.vm.network "public_network", bridge: "{{ VagrantInterface }}", ip:"{{ NagiosServerIP }}"
       {{ NagiosVmName }}.vm.provision "file", source: "files/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
       #{{ NagiosVmName }}.vm.provision "shell", path: "provisioners/packages.sh"
     end

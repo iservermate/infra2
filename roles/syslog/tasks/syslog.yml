@@ -11,7 +11,7 @@
     notify: "rsyslog reload"
 
   - name: "Updating firewall rules for rsyslog"
-    ansible.posix.firewalld:
+    firewalld:
       service: syslog
       permanent: yes
       state: enabled

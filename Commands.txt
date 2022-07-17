@@ -16,9 +16,10 @@ ansible-playbook -i inventory/dev/hosts InstallWordpress.yml
 > Update variable files:
     : web | db
 ansible-playbook -i inventory/dev/hosts InstallOsticket.yml
+Access: https://osticket.iservermate.local/upload/scp
 
 ### MAIL ### 
->>> IMPORT: SET 'RemoteServer' variable TO RemoteServer:mail.iservermate.loca
+>>> IMPORT: SET 'RemoteServer' variable TO RemoteServer:web.iservermate.loca
 Note: Updaete db | web | servers variables based on your VHOST.
 ansible-playbook -i inventory/dev/hosts InstallMail.yml
 Access: https://roundcube.iservermate.local/installer/

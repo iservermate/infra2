@@ -15,8 +15,8 @@
   #     #   - "%"
   #     #   - localhost
 
-  - name: ensure {{ db_name }} database user is present
-    #shell: mysql -e "CREATE USER '{{ db_user }}'@'%' IDENTIFIED BY '{{ db_pass }}';"
-    shell: mysql -e "grant all privileges on {{ db_name }}.* to {{ db_user }}@{{ RemoteServer }} identified by '{{ db_pass }}';"
-    notify: "mariadb restart"
+#  - name: ensure {{ db_name }} database user is present
+#    #shell: mysql -e "CREATE USER '{{ db_user }}'@'%' IDENTIFIED BY '{{ db_pass }}';"
+#    shell: mysql -e "grant all privileges on {{ db_name }}.* to {{ db_user }}@{{ RemoteServer }} identified by '{{ db_pass }}';"
+#    notify: "mariadb restart"
     

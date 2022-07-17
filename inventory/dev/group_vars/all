@@ -2,11 +2,11 @@
 ansible_python_interpreter: /usr/bin/python3
 
 #GIT INFO
-GitClonePath: ~/Documents/infra
+GitClonePath: ~/Documents/infra2
 
 #VAGRANT
-VagrantWifiInterface: "en0: Wi-Fi" #Disable below line and Enable this if using Lan interface
-#VagrantLanInterface: "eno1"  #Disable above line and Enable this if using Lan interface
+#VagrantWifiInterface: "en0: Wi-Fi" #Disable below line and Enable this if using Lan interface
+VagrantInterface: "eno1"  #Disable above line and Enable this if using Lan interface
 
 #COMPNAY
 Company: iServermate
@@ -40,7 +40,7 @@ DbServerIP: 192.168.0.94
 
 #Mail SERVER INFO
 MailPackages:
-  - dovecot                                        
+  - dovecot
   - gcc
   - libffi-devel
   - mailx
@@ -92,33 +92,33 @@ NagiosServerIP: 192.168.0.98
 #WEB SERVER VARIABLES
 #####################
 WebPackages:
-  - bzip2																				
-  - cargo                                         
-  - gcc                                           
-  - httpd                                         
-  - libffi-devel                                  
-  - mailx                                         
-  - mod_ssl                                       
-  - mysql                                         
-  - openssl                                       
-  - openssl-devel                                 
-  - php                                           
-  - php-cli                                       
-  - php-common                                    
-  - php-curl                                      
-  - php-gd                                        
-  - php-intl                                      
-  - php-json                                      
-  - php-ldap                                      
-  - php-mbstring                                  
-  - php-mysqlnd                                   
-  - php-opcache                                   
-  - php-pdo                                       
-  - php-pecl-apcu                                 
+  - bzip2
+  - cargo
+  - gcc
+  - httpd
+  - libffi-devel
+  - mailx
+  - mod_ssl
+  - mysql
+  - openssl
+  - openssl-devel
+  - php
+  - php-cli
+  - php-common
+  - php-curl
+  - php-gd
+  - php-intl
+  - php-json
+  - php-ldap
+  - php-mbstring
+  - php-mysqlnd
+  - php-opcache
+  - php-pdo
+  - php-pecl-apcu
   - php-pecl-zip
-  - php-pear-Net-Socket                                  
-  - php-xml                                       
-  - python3-devel                                 
+  - php-pear-Net-Socket
+  - php-xml
+  - python3-devel
   - redhat-rpm-config
 
 #SSL certificate info for web server
@@ -174,7 +174,9 @@ mysql_root_password: password
 db_name: roundcube
 db_user: roundcube
 db_pass: password
-RemoteServer: mail.iservermate.local #Server name, you will access this db from.
+RemoteServer: web.iservermate.local #Server name, you will access this db from.
+#MailServerUser: roundcube2
+#MailServer: mail.iservermate.local
 #Above line will be 'mail.iservermate.local' in case if you installing roundcube
 
 ######################

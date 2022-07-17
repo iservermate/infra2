@@ -12,7 +12,7 @@
     tags: ChronyRestart
 
   - name: "Updating firewall rules for rsyslog"
-    ansible.posix.firewalld:
+    firewalld:
       service: ntp
       permanent: yes
       state: enabled
@@ -23,6 +23,6 @@
       timedatectl set-ntp true
 
   - name: Set timezone to America/Toronto
-    community.general.timezone:
+    timezone:
       name: America/Toronto
     notify: "chronyd reload"

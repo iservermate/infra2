@@ -1,6 +1,6 @@
 ---
   - name: Updating firewall rules for {{ item }}
-    ansible.posix.firewalld:
+    firewalld:
       service: "{{ item }}"
       permanent: yes
       state: enabled
@@ -10,5 +10,5 @@
     notify: "firewall restart"
 
   - name: Disable selinux
-    ansible.posix.selinux:
+    selinux:
       state: disabled
