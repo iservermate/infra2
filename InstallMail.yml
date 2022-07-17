@@ -3,7 +3,6 @@
   - import_playbook: database.yml
   - import_playbook: roundcube.yml
   - import_playbook: mail.yml
-  - import_playbook: postfix.yml
 
 #  - name: Adding Db user
 #    hosts: dbserver
