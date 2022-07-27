@@ -130,7 +130,7 @@ organization_name: iServermate
 email_address: admin@iservermate.local
 
 #VIRTUALHOST (Info on Webserver)
-VhostName: nagios      #Change this variablel everytime you want to create new VIRTUALHOST
+VhostName: monitoring      #Change this variablel everytime you want to create new VIRTUALHOST
 VhostDomainName: iservermate.local
 
 #SSL certificate info for Virtualhosts on web server
@@ -171,8 +171,8 @@ DbPackages:
 
 #DB vars
 mysql_root_password: password
-db_name: roundcube
-db_user: roundcube
+db_name: monitoring
+db_user: monitoring
 db_pass: password
 RemoteServer: web.iservermate.local #Server name, you will access this db from.
 #MailServerUser: roundcube2

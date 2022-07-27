@@ -4,4 +4,11 @@
     become: true
     gather_facts: on
     roles:
+      - web
+
+  - name: "Install and configure Nagios server"
+    hosts: nagiosserver
+    become: true
+    gather_facts: on
+    roles:
       - nagios

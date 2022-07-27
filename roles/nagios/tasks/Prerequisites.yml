@@ -1,12 +1,57 @@
-- name: Install docker
+# - name: Remove unnecessory repo
+#   yum:
+#     name: epel-release
+#     state: absent
+
+- name: Install docker dependency
   yum:
-    name: 
-      - docker
-      - python3-docker.noarch
+    name: wget
     state: latest
+
+- name: Install Required pip modules
+  pip:
+    name:
+      - docker-py
+    state: present
+    executable: pip3
+
+- name: Download docker-ce-cli
+  get_url:
+    url: https://Download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-18.09.1-3.el7.x86_64.rpm
+    dest: /tmp/docker-ce-cli.rpm
+    mode: 755
+
+- name: Download docker-ce
+  get_url:
+    url: https://Download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.09.1-3.el7.x86_64.rpm
+    dest: /tmp/docker-ce.rpm
+    mode: 755
+
+- name: Download containerd.io
+  get_url:
+    url: https://Download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+    dest: /tmp/containerd.io.rpm
+    mode: 755
+
+- name: install docker-ce-cli package
+  yum: 
+    name: /tmp/docker-ce-cli.rpm
+    state: installed
+    disable_gpg_check: true
+
+- name: install containerd.io package
+  yum: 
+    name: /tmp/containerd.io.rpm
+    state: installed
+    disable_gpg_check: true  
+- name: install docker-ce package
+  yum: 
+    name: /tmp/docker-ce.rpm
+    state: installed
+    disable_gpg_check: true
 
 - name: start docker service
   service:
-    name: podman
+    name: docker
     state: started
     enabled: yes 

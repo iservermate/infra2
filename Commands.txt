@@ -9,12 +9,12 @@ ansible-playbook -i inventory/dev/hosts iServermate.yml
 
 ### WORDPRESS ### 
 > Update variable files:
-    : web | db
+    : web | db      #RemoteServer: web.iservermate.local
 ansible-playbook -i inventory/dev/hosts InstallWordpress.yml
 
 ### OSTICKET ### 
 > Update variable files:
-    : web | db
+    : web | db  #RemoteServer: db.iservermate.local
 ansible-playbook -i inventory/dev/hosts InstallOsticket.yml
 Access: https://osticket.iservermate.local/upload/scp
 

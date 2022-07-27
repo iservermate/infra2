@@ -18,7 +18,7 @@
 #     #detach: True
 
 - name: Create and start nagios contianer
-  shell: docker  run --hostname {{ ContainerHostname }} --name {{ ContainerName }} -v {{ NagVolumeName }}:{{ NagContainerDir }} -p 443:80 -itd {{ NagiosImage }} /bin/bash
+  shell: docker  run --hostname {{ ContainerHostname }} --name {{ ContainerName }} -v {{ NagVolumeName }}:{{ NagContainerDir }} -p 9090:80 -itd {{ NagiosImage }} /bin/bash
   ignore_errors: yes
 
 - name: Add port to firewall
